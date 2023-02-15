@@ -1,7 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { MainComponent } from './main/main.component';
+import { LauncherComponent } from './launcher/launcher.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: MainComponent,
+    data: {
+      title: 'Portal Main'
+    }
+  },
+  {
+    path: 'launcher',
+    component: LauncherComponent,
+    data: {
+      title: 'Portal Launcher'
+    }
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
