@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'cross-domain-proxy-ui';
+  title = 'Cross Domain Proxy UI';
+
+  handleClick(event: any) {
+    console.log(event);
+  }
 }
