@@ -1,6 +1,13 @@
 <div class="main">
     <div class="box">
-        <p-button class="button" label="Go to NGDMS" (onClick)="handleClick($event)"></p-button>
+        <div class="toolbox">            
+            <button pButton pRipple type="button" label="Refresh cookie" class="tool-button"
+                (click)="onRefreshCookie($event)">
+            </button>
+            <button pButton pRipple type="button" label="Go to NGDMS" class="tool-button p-button-success"
+                (click)="onRouteToNGDMS($event)">
+            </button>            
+        </div>
 
         <div class="title">This is my sample token: <span class="token">{{sampleToken}}</span></div>
     </div>

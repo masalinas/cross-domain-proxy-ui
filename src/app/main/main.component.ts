@@ -9,17 +9,34 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['main.component.css'],  
 })
 export class MainComponent implements OnInit {
-  public sampleToken: string = 'vvergerg6eGDBbdBD';
+  private tokenLenght: number = 10;
+  public sampleToken: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   
   constructor(private router: Router,
               private cookieService: CookieService) {    
   }
 
-  ngOnInit() {
+  generateString(length: number) {
+    return Math.random().toString(20).substr(2, length);
+  }
+
+  saveCookie() {
+    this.sampleToken = this.generateString(this.tokenLenght);
+
     this.cookieService.set('token', this.sampleToken);
   }
 
-  handleClick(event: any) {
+  ngOnInit() {
+    this.saveCookie();
+  }
+
+  onRefreshCookie (event: any){
+    this.sampleToken = this.generateString(this.tokenLenght);
+
+    this.saveCookie();
+  }
+  
+  onRouteToNGDMS(event: any) {
     this.router.navigate([]).then((result) => {
       window.open('http://localhost:4200/launcher');      
     });

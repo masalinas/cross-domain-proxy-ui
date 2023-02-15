@@ -11,8 +11,14 @@
     align-items: center;
 }
 
-.button {
+.toolbox {
+    display: flex;
+    flex-direction: row;
     margin: 20px;
+}
+
+.toolbox > .tool-button {
+  margin: 6px;
 }
 
 .title {
