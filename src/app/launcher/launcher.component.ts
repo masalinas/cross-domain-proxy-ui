@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,11 +9,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LauncherComponent implements OnInit {
   private receptorTemplate: string = "http://localhost:4300/receptor.html";
+  //private receptorTemplate: string = "http://localhost:4300";
   private receptorFrame: any;
   private sampleCookie: any;
 
-  constructor(private router: Router,
-              private cookieService: CookieService) {    
+  constructor(private cookieService: CookieService) {    
   }
 
   ngOnInit() {
@@ -27,7 +26,7 @@ export class LauncherComponent implements OnInit {
 
     this.receptorFrame = document.createElement('iframe');
     this.receptorFrame.setAttribute('id', 'receptor');
-    this.receptorFrame.setAttribute('style', 'display:none;');
+    this.receptorFrame.setAttribute('style', 'display: none;');
     this.receptorFrame.setAttribute('src', this.receptorTemplate);
     
     // add onload event module frame
@@ -42,9 +41,11 @@ export class LauncherComponent implements OnInit {
   private postModuleMessage() {
     // recover token from sample cookie
     this.sampleCookie = this.cookieService.get('token');
-   
+
+    let tokenMessage = JSON.stringify({ token: this.sampleCookie });
+    
     // send sample cookie to receptor template
-    this.receptorFrame.contentWindow.postMessage(this.sampleCookie, '*');
+    this.receptorFrame.contentWindow.postMessage(tokenMessage, '*');
     
     // redirect to main view to show sample token included in the cookie
     window.location.href = "http://localhost:4300";
