@@ -11,7 +11,7 @@ export class LauncherComponent implements OnInit {
   private receptorTemplate: string = "http://localhost:4300/receptor.html";
   //private receptorTemplate: string = "http://localhost:4300";
   private receptorFrame: any;
-  private sampleCookie: any;
+  private sampleToken: any;
 
   constructor(private cookieService: CookieService) {    
   }
@@ -40,12 +40,12 @@ export class LauncherComponent implements OnInit {
 
   private postModuleMessage() {
     // recover token from sample cookie
-    this.sampleCookie = this.cookieService.get('token');
+    this.sampleToken = this.cookieService.get('token');
 
-    let tokenMessage = JSON.stringify({ token: this.sampleCookie });
+    let event = JSON.stringify({ token: this.sampleToken });
     
     // send sample cookie to receptor template
-    this.receptorFrame.contentWindow.postMessage(tokenMessage, '*');
+    this.receptorFrame.contentWindow.postMessage(event, '*');
     
     // redirect to main view to show sample token included in the cookie
     window.location.href = "http://localhost:4300";
