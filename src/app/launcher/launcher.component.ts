@@ -9,7 +9,6 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LauncherComponent implements OnInit {
   private receptorTemplate: string = "http://localhost:4300/receptor.html";
-  //private receptorTemplate: string = "http://localhost:4300";
   private receptorFrame: any;
   private sampleToken: any;
 
